@@ -101,7 +101,7 @@
 
 
     #instruction {
-      margin: -15px 0px;
+      margin: 20px 0px;
       border-width: 2px;
       /* border-style: solid;
           border-color: lightgrey; */
@@ -198,9 +198,7 @@
 </head>
 
 <body>
-  <div style="position: absolute;border: 2px solid black;top: -57px;left: -15px;
-
-  ">
+  <div style="position: absolute;border: 2px solid black;    top: -32px;">
     <div class="container-fluid">
       <div style="position:relative;    top: 66.8em;left:-1em;color:white;background-color: #cb3535;width: 101.6%;text-align: center;height: 33px;
   padding: 5px;">
@@ -260,29 +258,50 @@
   right: 414px;
   width: 120px;
   " class="btn btn-primary" onclick="window.print()">Print</button>
-            <p style="    position: absolute;
-           top: 8px; right: 9px;"><a href="javascript:void(0)"
-                onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='none'"
-                class="btn btn-danger"><b>Instructions</b></a>
-          </div>
+</div>
+
+<div id="digital-m" style="background-color:rgb(7, 7, 7); width: 120px; height: 50px; ;border:inset 6px lightgray;position:absolute;    top: 51px;
+left: 1502px; ">
+      <b>
+        <p id="digi"
+          style="text-align: center; margin:5px; font-size:1.5rem; font-family:'Seven Segment'sans-serif;color:crimson;">
+          --.--</p>
+      </b>
+    </div>
+
+
+            
 
         </div>
 
+      
+
         <div class="col-md-3" id="instruction">
           <div id="inst" class="col-sm">
+            <p style="    position: relative;
+            top: 30px;
+    right: 167px; width:300px"><a href="javascript:void(0)"
+                onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='none'"
+                class="btn btn-danger"><b>Instructions</b></a>
             <!-- <p><a href="javascript:void(0)"
                 onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'"><b>Instructions</b></a>
             </p> -->
-            <div id="light" class="white_content">Wien Robinson's frequency Bridge<br>
-              <img src="robinson.png" width="150px" height="150px">
+            <div id="light" class="white_content"><b>Wien Robinson's frequency Bridge</b><br>
+              <img src="robinson.png" width="550px" height="450px">
               <ul>&bull;Pick up four resistances,two capacitors, a ac voltage source and a detector from the toolbox.
               </ul><br>
               <ul>&bull;Connect the elements as shown in the figure to form a Wien Robinson's frequency Bridge.</ul><br>
-              <ul>&bull;After making the circuit click on check circuit button to check the connections</ul>
-              <ul>&bull;Now enter the values of resistors, capacitors and AC voltage source and click on the submit
+              <ul>&bull;After making the circuit click on check circuit button to check the connections</ul><br>
+              <ul>&bull;Select the ratio (R4/R3) from the dropdown available (default value is 2)</ul><br>
+              <ul>&bull;Now enter the values of resistors and capacitors such that first equation of balancing is satisfied i.e. (R4/R3)=(R2/R1) +(C1/C2). Enter AC voltage source value and click on the submit
                 button.</ul><br>
+              <ul>&bull;Each time after hitting submit button digital meter shows deviation from the actual frequency value where a negative value shows that calculated frequency is lesser than the actual frequency while a positive value refers to larger calculated value
+                and a zero value represents balanced bridge.
+              </ul><br>
+              <ul>&bull;In order to fix negative value of digital meter decrease the resistance and capacitance values keeping the initial ratio constant and for fixing a positive value increase the same.
+              </ul><br>
               <ul>&bull;Repeat the experiment until the bridge gets balanced.</ul><br>
-              <ul>&bull;After balancing the bridge, unknown frequency will popup.</ul><br>
+              <ul>&bull;After balancing the bridge, unknown frequency will be automatically added to the observation table.</ul><br>
               <a href="javascript:void(0)"
                 onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"
                 class="btn btn-outline-danger" style="    position: absolute;
@@ -344,42 +363,58 @@
             <h3 style="    position: relative;
             border: 2px solid black;
             width: 437px;
-            text-align: center;background-color: #cb3535;color: white;border-radius: 6px;top: 16px;right: -6px;
+            text-align: center;background-color: #cb3535;color: white;border-radius: 6px;right: -3px;
+            top: -74px;
         ">Calculations</h3>
 
 
 
 
             <div id="mydiv" style="display:block;border: 2px solid black; padding: 20px;width: 90%;   position: absolute;
-            top: 56px;
+            top: 26px;
     right: 27px;"><B>Give Input :</B><br><br>
               <form action="#" onsubmit="yourJsFunction();return false">
+
+                <label><b>Enter R4/R3:</b></label>&nbsp;
+                <select name="res" id="r3" style="width: 120px;">
+                  <option value="1">2</option>
+                  <option value="2">1</option>
+                  <option value="3">3</option>
+                  
+                </select><br>
+
+
+
+
                 <label>Enter R1:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="number" id="data1" min="0" 
-                max="1000000" step="0.1"><br>
+                max="1000000" step="0.1" onchange="document.getElementById('r1_tag0').innerHTML='R2 = '+this.value+'&nbsp;Ω'"
+                >
+            <br>
+                
 
                 <label>Enter R2:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="number" id="data2" min="0" 
-                max="1000000" step="0.1"><br>
+                max="1000000" step="0.1" onchange="document.getElementById('r1_tag1').innerHTML='R2 = '+this.value+'&nbsp;Ω'"><br>
 
-                <label>Enter R3:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- <label>Enter R3:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="number" id="data6" min="0" 
                 max="1000000" step="0.1"><br>
 
                 <label>Enter R4:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="number" id="data7" min="0" 
-                max="1000000" step="0.1"><br>
+                max="1000000" step="0.1"><br> -->
 
                 <label>Enter C1:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="number" id="data3" min="0.000000001" 
-                max="0.000001" step="0.000000001"><br>
+                <input type="number" id="data3" min="0.00000001" 
+                max="0.000001" step="0.00000001" style="width: 120px;" onchange="document.getElementById('c1_tag0').innerHTML='C1 = '+this.value+'&nbsp;F'"><br>
 
                 <label>Enter C2:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="number" id="data4" min="0.000000001" 
-                max="0.000001" step="0.000000001"><br>
+                <input type="number" id="data4" min="0.00000001" 
+                max="0.000001" step="0.00000001" style="width: 120px;" onchange="document.getElementById('c1_tag1').innerHTML='C2 = '+this.value+'&nbsp;F'"><br>
 
                 <label>Enter Voltage:</label>
-                <input type="number" id="data5"><br><br>
+                <input type="number" id="data5" style="width: 120px;"><br><br>
 
                 <input id="btn1" class="btn btn-success" type="submit" disabled />
 
@@ -391,10 +426,10 @@
             <h3 style="    position: relative;
           border: 2px solid black;
           width: 458px;
-          text-align: center;background-color: #cb3535;color: white;border-radius: 6px;right: 6px;        top: 484px;
+          text-align: center;background-color: #cb3535;color: white;border-radius: 6px;right: 6px; top: 360px;
       ">Observation Table</h3>
             <table id="myTable" style="    position: relative;
-                  top: 484px;
+                  top: 365px;
             border: 2px solid black!important;
             right: 6px;
         width: 102%;
@@ -463,10 +498,10 @@
         var c1 = document.getElementById("data3").value;
         var c2 = document.getElementById("data4").value;
         var data5 = document.getElementById("data5").value;
-        var r3 = document.getElementById("data6").value;
-        var r4 = document.getElementById("data7").value;
+        var r3 = document.getElementById("r3").value;
+        //var r4 = document.getElementById("data7").value;
         // console.log(data1);
-        if (r1 == "" || r2 == "" || r3 == "" || r4 == "" || data5 == "" || c1 == "" || c2 == "") {
+        if (r1 == "" || r2 == "" || r3 == "" || data5 == "" || c1 == "" || c2 == "") {
           swal("Fill empty values");
 
           return;
@@ -475,13 +510,13 @@
         r1 = parseFloat(r1);
         r2 = parseFloat(r2);
         r3 = parseFloat(r3);
-        r4 = parseFloat(r4);
+        //r4 = parseFloat(r4);
         v = parseFloat(data5);
         c1 = parseFloat(c1);
         c2 = parseFloat(c2);
 
 
-        if (r1 <= 0 || r2 <= 0 || r3 <= 0 || r4 <= 0 || v <= 0 || c1 <= 0 || c2 <= 0) {
+        if (r1 <= 0 || r2 <= 0 || r3 <= 0 || v <= 0 || c1 <= 0 || c2 <= 0) {
           swal("Invalid Values");
 
           return;
@@ -491,23 +526,80 @@
         var row = document.createElement("tr");
 
         const arr = [r1, r2, c1, c2, v];
-        const freq = (1 / 2 * (3.14159265359)) * (1 / Math.sqrt(r1 * r2 * c1 * c2));
-        
+        const freq = (1 / (2 * 3.14159265359)) * (1 / Math.sqrt(r1 * r2 * c1 * c2));
+        var res;
         var num1=(r2/r1)+(c1/c2);
-        var num2=(r4/r3);
-        if(Math.abs(num2-num1)>0.6)
+        var num2=r3;
+        console.log(freq);
+        console.log(freq-omega);
+        if(Math.abs(num2-num1)>0.2)
           {
-            swal("Unbalanced Bridge");
+            var audio = new Audio('audio1_detector.mp3');
+        audio.play();
+        audio.volume = 0.1;
+        swal("Unbalanced");
+        audio.addEventListener("canplaythrough", function () {
+          setTimeout(function () {
+            audio.pause();
+          },
+            3000);
+        }, false);
 
-            return;
+      
           }
+          else if(Math.abs(freq-omega)>omega/20){
+            res=(freq-omega)/100;
+            if(res<-1){
+              res=-1;
+              document.getElementById("digi").innerHTML = res;
+            }
+            else if(res>1){
+              res=1;
+              document.getElementById("digi").innerHTML = res;
+            }
+            else{
+              res=res.toFixed(3);
+              document.getElementById("digi").innerHTML = res;
+            }
+            var audio = new Audio('audio1_detector.mp3');
+        audio.play();
+        audio.volume = 0.1;
+        swal("Unbalanced");
+        audio.addEventListener("canplaythrough", function () {
+          setTimeout(function () {
+            audio.pause();
+          },
+            3000);
+        }, false);
+          
+          }
+        else{
         //swal("f: " + freq);
         var remain=omega/100;
-        if(abs(freq-omega)>remain){
-          swal("Unbalanced Bridge");
+        console.log(omega);
+        console.log(freq);
+        console.log(freq-omega);
 
-          return;
+
+        if(Math.abs(freq-omega)>remain){
+          res=(freq-omega)/100;
+          res=res.toFixed(3);
+          document.getElementById("digi").innerHTML = res;
+          var audio = new Audio('audio2_detector.mp3');
+        audio.play();
+        audio.volume = 0.2;
+        swal("Unbalanced");
+        audio.addEventListener("canplaythrough", function () {
+          setTimeout(function () {
+            audio.pause();
+          },
+            5000);
+        }, false);
+
         }
+        else{
+          res=0;
+          document.getElementById("digi").innerHTML = res;
         swal("balanced Bridge");
         for (var i = 1; i <= 5; i++) {
           // Get the value of the current input field
@@ -528,9 +620,11 @@
 
 
         var cell = document.createElement("td");
-        cell.innerHTML = freq;
+        cell.innerHTML = freq.toFixed(4);
         row.appendChild(cell);
         document.getElementById("myTable").appendChild(row);
+      }
+    }
 
       }
 
@@ -713,6 +807,8 @@
           swal("Wrong Connection");
         }
         else {
+          var p_top=document.querySelector('#diagram').getBoundingClientRect().top;
+         var p_left=document.querySelector('#diagram').getBoundingClientRect().left;
           var amp = {};
           for (var i = 0; i < Sid.length; i++) {
             amp[Sid[i]] = amp[Sid[i]] || [];
@@ -731,8 +827,8 @@
             swal("Wrong Connection");
           }
           else {
-            var r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
-            var r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 210;
+            var r_top = document.querySelector('#' + s + '').getBoundingClientRect().bottom-p_top;
+            var r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left+10;
             r_pos[3] = [r_top, r_left];
             s_element.add(s);
             if (amp[s][2] != arr[2])
@@ -742,16 +838,16 @@
             if (s_element.has(s) || s[0] != 'c' || amp[s].length != 2 || amp[s][0][0] != 'r')
             swal("Wrong Connection");
             else {
-              r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
-              r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 210;
+              r_top = document.querySelector('#' + s + '').getBoundingClientRect().bottom-p_top;
+              r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left+10;
               c_pos[1] = [r_top, r_left];
               s_element.add(s);
               s = amp[s][1];
               if (s_element.has(s) || s[0] != 'r' || amp[s].length != 2 || amp[s][1] != arr[7])
               swal("Wrong Connection");
               else {
-                r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
-                r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 210;
+                r_top = document.querySelector('#' + s + '').getBoundingClientRect().bottom-p_top;
+                r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left+10;
                 r_pos[1] = [r_top, r_left];
                 s_element.add(s);
                 s = amp[arr[2]][1];
@@ -770,8 +866,8 @@
                       if (s_element.has(s) || amp[s].length != 3 || amp[s][2] != arr[7])
                       swal("Wrong Connection");
                       else {
-                        r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
-                        r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 210;
+                        r_top = document.querySelector('#' + s + '').getBoundingClientRect().bottom-p_top;
+                        r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left+10;
                         r_pos[0] = [r_top, r_left];
                         s_element.add(s);
                         if (amp[s][1] != arr[2]) { s = amp[s][1]; }
@@ -780,8 +876,8 @@
                         if (s_element.has(s) || amp[s].length != 3 || amp[s][0] != arr[7])
                           swal("Wrong Connection");
                         else {
-                          r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
-                          r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 210;
+                          r_top = document.querySelector('#' + s + '').getBoundingClientRect().bottom-p_top;
+                          r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left+10;
                           r_pos[2] = [r_top, r_left];
                           s_element.add(s);
                           
@@ -793,32 +889,35 @@
                             swal("Wrong Connections");
                           }
                           else{
-                            r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
-                          r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 210;
+                            r_top = document.querySelector('#' + s + '').getBoundingClientRect().bottom-p_top;
+                          r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left+10;
                           c_pos[0] = [r_top, r_left];
                           swal("Right Connections...Go Ahead!!");
                           omega=randomIntFromInterval(50, 3000);
 
+
+                          console.log(omega);
+
                           var f = document.getElementById("btn1");
                           f.removeAttribute("disabled")
-                          var v_top = document.querySelector('#' + s_v + '').getBoundingClientRect().top + 50;
-                          var v_left = document.querySelector('#' + s_v + '').getBoundingClientRect().left - 170;
+                          var v_top = document.querySelector('#' + s_v + '').getBoundingClientRect().bottom-p_top;
+                          var v_left = document.querySelector('#' + s_v + '').getBoundingClientRect().left - p_left+10;
 
                           $("<div id='abcd' style = 'position: absolute;top:" + v_top + "px ; left:" + v_left + "px ;'><b>+ V,f -</b></div>")
                             .appendTo("#diagram");
 
 
 
-                          for (var i = 0; i < 4; i++) {
-                            $("<div id='r1_tag' style = 'position: absolute;top:" + r_pos[i][0] + "px ; left:" + r_pos[i][1] + "px ;'><b>R" + (i + 1) + "</b></div>")
+                            for (var i = 0; i < 4; i++) {
+                              $("<div id='r1_tag"+i+"' style = 'position: absolute;top:" + r_pos[i][0] + "px ; left:" + r_pos[i][1] + "px ;'><b>R" + (i + 1) + "</b></div>")
+                                .appendTo("#diagram");
+                            }
+
+
+                            $("<div id='c1_tag0' style = 'position: absolute;top:" + c_pos[0][0] + "px ; left:" + c_pos[0][1] + "px ;'><b>C" + 1 + "</b></div>")
                               .appendTo("#diagram");
-                          }
-
-
-                          $("<div id='r1_tag' style = 'position: absolute;top:" + c_pos[0][0] + "px ; left:" + c_pos[0][1] + "px ;'><b>C" + 1 + "</b></div>")
-                            .appendTo("#diagram");
-                          $("<div id='r1_tag' style = 'position: absolute;top:" + c_pos[1][0] + "px ; left:" + c_pos[1][1] + "px ;'><b>C" + 2 + "</b></div>")
-                            .appendTo("#diagram");
+                            $("<div id='c1_tag1' style = 'position: absolute;top:" + c_pos[1][0] + "px ; left:" + c_pos[1][1] + "px ;'><b>C" + 2 + "</b></div>")
+                              .appendTo("#diagram");
                           mydiv.style.display = "block";
 
                           var div1 = document.getElementById("diagram");
@@ -835,8 +934,8 @@
                     if (s_element.has(s) || amp[s].length != 3 || amp[s][2] != arr[7])
                     swal("Wrong Connections");
                     else {
-                      r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
-                      r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 210;
+                      r_top = document.querySelector('#' + s + '').getBoundingClientRect().bottom-p_top;
+                      r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left+10;
                       c_pos[0] = [r_top, r_left];
                       s_element.add(s);
                       if(amp[s][1]!=arr[2])
@@ -846,8 +945,8 @@
                       if (s_element.has(s) || amp[s].length != 3 || amp[s][0] != arr[7])
                       swal("Wrong Connections");
                       else {
-                        r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
-                        r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 210;
+                        r_top = document.querySelector('#' + s + '').getBoundingClientRect().bottom-p_top;
+                        r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left+10;
                         r_pos[2] = [r_top, r_left];
                         s_element.add(s);
                         if(s_element.has(amp[s][1]))
@@ -858,16 +957,16 @@
                         swal("Wrong Connection");
                         
                           else {
-                            r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
-                            r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 210;
+                            r_top = document.querySelector('#' + s + '').getBoundingClientRect().bottom-p_top;
+                            r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left+10;
                             r_pos[0] = [r_top, r_left];
                             s_element.add(s);
                             swal("Right Connections...Go Ahead!!");
                             var f = document.getElementById("btn1");
                             f.removeAttribute("disabled")
 
-                            var v_top = document.querySelector('#' + s_v + '').getBoundingClientRect().top + 50;
-                            var v_left = document.querySelector('#' + s_v + '').getBoundingClientRect().left - 170;
+                            var v_top = document.querySelector('#' + s_v + '').getBoundingClientRect().bottom-p_top;
+                            var v_left = document.querySelector('#' + s_v + '').getBoundingClientRect().left - p_left+10;
 
                             $("<div id='abcd' style = 'position: absolute;top:" + v_top + "px ; left:" + v_left + "px ;'><b>+ V,f -</b></div>")
                               .appendTo("#diagram");
@@ -875,14 +974,14 @@
 
 
                             for (var i = 0; i < 4; i++) {
-                              $("<div id='r1_tag' style = 'position: absolute;top:" + r_pos[i][0] + "px ; left:" + r_pos[i][1] + "px ;'><b>R" + (i + 1) + "</b></div>")
+                              $("<div id='r1_tag"+i+"' style = 'position: absolute;top:" + r_pos[i][0] + "px ; left:" + r_pos[i][1] + "px ;'><b>R" + (i + 1) + "</b></div>")
                                 .appendTo("#diagram");
                             }
 
 
-                            $("<div id='r1_tag' style = 'position: absolute;top:" + c_pos[0][0] + "px ; left:" + c_pos[0][1] + "px ;'><b>C" + 1 + "</b></div>")
+                            $("<div id='c1_tag0' style = 'position: absolute;top:" + c_pos[0][0] + "px ; left:" + c_pos[0][1] + "px ;'><b>C" + 1 + "</b></div>")
                               .appendTo("#diagram");
-                            $("<div id='r1_tag' style = 'position: absolute;top:" + c_pos[1][0] + "px ; left:" + c_pos[1][1] + "px ;'><b>C" + 2 + "</b></div>")
+                            $("<div id='c1_tag1' style = 'position: absolute;top:" + c_pos[1][0] + "px ; left:" + c_pos[1][1] + "px ;'><b>C" + 2 + "</b></div>")
                               .appendTo("#diagram");
                             mydiv.style.display = "block";
 
